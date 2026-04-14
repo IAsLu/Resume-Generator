@@ -1,0 +1,104 @@
+﻿@model FINAL.Models.ContactUsViewModel
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .contact-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(248, 249, 250, 0.8); /* Semi-transparent background */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly more pronounced shadow for better visibility */
+        margin-top: 70px; /* Ensure the form is positioned below the fixed navbar */
+    }
+
+    .btn-custom {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        display: block;
+        margin: 0 auto;
+    }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+    .form-horizontal {
+        margin-top: 20px; /* Add top margin to create space above the form */
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* Add bottom margin to create space between form groups */
+    }
+
+        .form-group .control-label {
+            margin-bottom: 10px; /* Add bottom margin to labels */
+        }
+
+    .form-container h2 {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="contact-form-container">
+        <h2>Contact Us</h2>
+        @using (Html.BeginForm("Contact", "ContactUs", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Message, new { @class = "form-control", rows = 5 })
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Send Message" class="btn-custom" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+
+

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FINAL.Models.Template_2.Projects>
+
+@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Projects</h2>
+
+<p>
+    @Html.ActionLink("Create New Project", "Create", new { resumeId = ViewBag.ResumeId })
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().ProjectTitle)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Role)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Outcome)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ProjectTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                <td>@Html.DisplayFor(modelItem => item.Outcome)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

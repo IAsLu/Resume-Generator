@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FINAL.Models.Template_2.Certifications>
+
+@{
+    ViewBag.Title = "Certifications List";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Certifications List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Certification Name</th>
+            <th>Issuing Organization</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var certification in Model)
+        {
+            <tr>
+                <td>@certification.CertificationName</td>
+                <td>@certification.IssuingOrganization</td>
+                <td>@certification.Year</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = certification.CertificationId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = certification.CertificationId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Create New Certification", "Create")
+</p>

@@ -1,0 +1,24 @@
+﻿@model FINAL.Models.Template_2.Hobbies
+
+@{
+    ViewBag.Title = "Edit Hobby";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Edit Hobby</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HobbyName)
+        @Html.TextBoxFor(model => model.HobbyName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.HobbyName)
+    </div>
+
+    @Html.HiddenFor(model => model.HobbyId)
+    @Html.HiddenFor(model => model.ResumeId)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

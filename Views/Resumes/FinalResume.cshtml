@@ -1,0 +1,202 @@
+﻿@model FINAL.Models.Template_2.FinalResumeViewModel
+
+@{
+    ViewBag.Title = "FinalResume";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        /* Scoped styles for final view */
+        .resume-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Ensure left alignment */
+        }
+
+            .resume-container h1 {
+                font-size: 28px;
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+            .resume-container h2 {
+                font-size: 22px;
+                color: #3498db;
+                margin-top: 20px;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 5px;
+            }
+
+            .resume-container h3 {
+                font-size: 18px;
+                color: #2c3e50;
+                margin-top: 15px;
+            }
+
+            .resume-container p, .resume-container ul {
+                margin: 0;
+                padding: 0;
+                margin-bottom: 10px;
+                color: #555;
+            }
+
+            .resume-container ul {
+                list-style-type: none;
+                padding-left: 20px;
+            }
+
+                .resume-container ul li::before {
+                    content: "• ";
+                    color: #3498db;
+                    padding-right: 5px;
+                }
+
+            .resume-container .contact-info {
+                font-size: 16px;
+                color: #777;
+                margin-bottom: 20px;
+            }
+
+            .resume-container .section-title {
+                background-color: #3498db;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 5px;
+                margin-bottom: 15px;
+                display: inline-block;
+            }
+
+            .resume-container .experience-item, .resume-container .education-item, .resume-container .certification-item, .resume-container .project-item {
+                margin-bottom: 15px;
+            }
+
+                .resume-container .experience-item h3, .resume-container .education-item h3, .resume-container .certification-item h3, .resume-container .project-item h3 {
+                    margin-bottom: 5px;
+                }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script>
+        function downloadPDF() {
+            html2canvas(document.querySelector(".resume-container")).then(canvas => {
+                const imgData = canvas.toDataURL("image/png");
+                const pdf = new jsPDF({
+                    orientation: "p",
+                    unit: "mm",
+                    format: "a4"
+                });
+                pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
+                const pdfData = pdf.output("datauristring");
+
+                // Send PDF data to server to store in database
+                fetch('/Resumes/SavePdfBase64', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ base64Pdf: pdfData })
+                }).then(response => response.json())
+                  .then(result => {
+                      if (result.success) {
+                          window.location.href = result.downloadUrl; // Redirect to download link or show success message
+                      } else {
+                          alert('Error saving PDF.');
+                      }
+                  });
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="resume-container">
+        <h1>@Model.Resume.Name</h1>
+        <p class="contact-info">
+            Email: @Model.Resume.Email | Phone: @Model.Resume.Phone | Address: @Model.Resume.Address
+        </p>
+
+        <h2 class="section-title">Professional Summary</h2>
+        <p>@Model.Resume.ProfessionalSummary</p>
+
+        <h2 class="section-title">Work Experience</h2>
+        @foreach (var experience in Model.WorkExperiences)
+        {
+            <div class="experience-item">
+                <h3>@experience.JobTitle – @experience.CompanyName, @experience.City, @experience.State</h3>
+                <p>@experience.StartDate – @experience.EndDate</p>
+                <ul>
+                    <li>@experience.Responsibilities</li>
+                </ul>
+            </div>
+        }
+
+        <h2 class="section-title">Education</h2>
+        @foreach (var education in Model.Educations)
+        {
+            <div class="education-item">
+                <h3>@education.Degree in @education.Major</h3>
+                <p>@education.SchoolName, @education.City, @education.State – @education.GraduationYear</p>
+            </div>
+        }
+
+        <h2 class="section-title">Skills</h2>
+        <ul>
+            @foreach (var skill in Model.Skills)
+            {
+                <li>@skill.SkillName</li>
+            }
+        </ul>
+
+        <h2 class="section-title">Certifications</h2>
+        @foreach (var cert in Model.Certifications)
+        {
+            <div class="certification-item">
+                <h3>@cert.CertificationName – @cert.IssuingOrganization, @cert.Years</h3>
+            </div>
+        }
+
+        <h2 class="section-title">Projects</h2>
+        @foreach (var project in Model.Projects)
+        {
+            <div class="project-item">
+                <h3>@project.ProjectTitle</h3>
+                <p>@project.Description</p>
+                <p>@project.Role</p>
+                <p>@project.Outcome</p>
+            </div>
+        }
+
+        <h2 class="section-title">Languages</h2>
+        <ul>
+            @foreach (var language in Model.Languages)
+            {
+                <li>@language.LanguageName</li>
+            }
+        </ul>
+
+        <h2 class="section-title">Hobbies</h2>
+        <ul>
+            @foreach (var hobby in Model.Hobbies)
+            {
+                <li>@hobby.HobbyName</li>
+            }
+        </ul>
+    </div>
+    <div class="resume-actions" style="text-align:center">
+        @Html.ActionLink("Back to Resume List", "Index", "Resumes", null, new { @class = "btn btn-secondary" })
+        @Html.ActionLink("Edit Resume", "Edit", "Resumes", new { Id = Model.Resume.ResumeId }, new { @class = "btn btn-primary" })
+        <button onclick="downloadPDF()" class="btn btn-success">Download PDF</button>
+    </div>
+</body>
+</html>

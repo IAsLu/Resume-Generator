@@ -1,0 +1,25 @@
+﻿@model FINAL.Models.Template_2.Certifications
+
+@{
+    ViewBag.Title = "Delete Certification";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Delete Certification</h2>
+
+<h3>Are you sure you want to delete this certification?</h3>
+
+<div>
+    <h4>Certification Name: @Model.CertificationName</h4>
+    <h4>Issuing Organization: @Model.IssuingOrganization</h4>
+    <h4>Year: @Model.Years</h4>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CertificationId)
+
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary" })
+}

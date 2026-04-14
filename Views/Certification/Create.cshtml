@@ -1,0 +1,79 @@
+﻿@model FINAL.Models.Certification
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="margin-top:20px;">Certification</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.ResumeId, new { Value = ViewBag.ResumeId })
+
+        <!-- Row 1: CertificationName and IssuedBy -->
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.CertificationName, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.CertificationName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CertificationName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.IssuedBy, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.IssuedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IssuedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: Year -->
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+                <input type="submit" value="Next" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .form-group {
+        margin-bottom: 20px; /* Space between form elements */
+    }
+
+    .row {
+        margin-bottom: 20px; /* Space between rows */
+    }
+
+    .form-group:last-of-type {
+        margin-bottom: 30px; /* Extra space before the submit button */
+    }
+
+    body {
+        background-image: url('https://img.pikbest.com/wp/202344/white-seamless-texture-soft-mink-cotton-wool-background_9929452.jpg!sw800');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
+
+
+

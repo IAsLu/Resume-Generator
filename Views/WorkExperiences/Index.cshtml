@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FINAL.Models.Template_2.WorkExperiences>
+
+@{
+    ViewBag.Title = "Work Experiences";
+    var resumeId = ViewBag.ResumeId as int?;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Work Experiences</h2>
+
+@if (resumeId.HasValue)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", new { resumeId = resumeId.Value }, new { @class = "btn btn-primary" })
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Company Name</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Responsibilities</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.City)</td>
+                    <td>@Html.DisplayFor(modelItem => item.State)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EndDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Responsibilities)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ExperienceId, resumeId = resumeId.Value }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ExperienceId, resumeId = resumeId.Value }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ExperienceId, resumeId = resumeId.Value })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No ResumeId was provided. Please go back and select a resume.</p>
+}

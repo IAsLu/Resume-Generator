@@ -1,0 +1,26 @@
+﻿@model FINAL.Models.Project
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<h2>Project Details</h2>
+
+<div>
+    <h4>Project</h4>
+    <dl class="dl-horizontal">
+        <dt>Project Name</dt>
+        <dd>@Model.ProjectName</dd>
+        <dt>ProjectDescription</dt>
+        <dd>@Model.ProjectDescription</dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+

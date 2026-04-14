@@ -1,0 +1,42 @@
+﻿@model FINAL.Models.Skill
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('https://img.pikbest.com/wp/202344/white-seamless-texture-soft-mink-cotton-wool-background_9929452.jpg!sw800');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
+
+
+<h2 style="margin-top:20px;">Edit Skill</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.Hidden("resumeId", ViewData["ResumeId"])
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SkillName)
+        @Html.TextAreaFor(model => model.SkillName, new { @class = "form-control", @rows = 5, @style = "border-radius: 5px;" })
+        @Html.ValidationMessageFor(model => model.SkillName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group" style="margin-top:10px;">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+            <input type="submit" value="Next" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+
+

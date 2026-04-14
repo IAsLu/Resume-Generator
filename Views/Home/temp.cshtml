@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "temp";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<body>
+    <div class="container">
+        <div class="template-row">
+            <div class="template-section">
+                <h3>Template 1</h3>
+                <br />
+                <img id="thumbnail1" src="~/images/RESIMG.jpeg" alt="Template Image" style="width: 250px; height: 300px; cursor: pointer;" onclick="showFullImage('thumbnail1', 'Template1')" />
+            </div>
+
+            <div class="template-section">
+                <h3>Template 2</h3>
+                <br />
+                <img id="thumbnail2" src="~/images/Screenshot (224).png" alt="Template Image" style="width: 250px; height: 300px; cursor: pointer;" onclick="showFullImage('thumbnail2', 'Template2')" />
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal" onclick="closeModal(event)">
+            <span class="close" onclick="closeModal(event)">&times;</span>
+            <div class="modal-content-wrapper">
+                <img class="modal-content" id="fullImage">
+                <a id="createButton" href="#" class="btn btn-primary create-button" style="margin-bottom:40px;">Create</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Modal Styles -->
+<style>
+    body {
+        background-image: url("https://images.unsplash.com/photo-1554120013-4ba50c1a1788?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8fA%3D%3D");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .container {
+        position: relative;
+        padding: 20px;
+    }
+
+    .template-row {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 40px;
+        gap: 20px; /* Adjust this value to control the distance between Template 1 and Template 2 */
+    }
+
+    .template-section {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content-wrapper {
+        position: relative;
+        text-align: center;
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+
+    .create-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+        .create-button:hover {
+            background-color: #0056b3;
+        }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+
+<!-- Modal Script -->
+<script>
+    function showFullImage(thumbnailId, template) {
+        var modal = document.getElementById("myModal");
+        var fullImage = document.getElementById("fullImage");
+        var thumbnail = document.getElementById(thumbnailId);
+        var createButton = document.getElementById("createButton");
+
+        fullImage.src = thumbnail.src;
+        modal.style.display = "block";
+
+        // Set the Create button link based on the template
+        if (template === 'Template1') {
+            createButton.href = '@Url.Action("Create", "Resume")';
+        } else if (template === 'Template2') {
+            createButton.href = '@Url.Action("Create", "Resumes")';
+        }
+    }
+
+    function closeModal(event) {
+        var modal = document.getElementById("myModal");
+        if (event.target === modal || event.target.className === 'close') {
+            modal.style.display = "none";
+        }
+    }
+</script>

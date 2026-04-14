@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FINAL.Models.Template_2.Educations>
+
+@{
+    ViewBag.Title = "Educations";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Education List</h2>
+
+<p>
+    @Html.ActionLink("Add New Education", "Create", new { resumeId = ViewBag.ResumeId })
+</p>
+
+<table class="table">
+    <tr>
+        <th>Degree</th>
+        <th>Major</th>
+        <th>School Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Graduation Year</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Degree)</td>
+            <td>@Html.DisplayFor(modelItem => item.Major)</td>
+            <td>@Html.DisplayFor(modelItem => item.SchoolName)</td>
+            <td>@Html.DisplayFor(modelItem => item.City)</td>
+            <td>@Html.DisplayFor(modelItem => item.State)</td>
+            <td>@Html.DisplayFor(modelItem => item.GraduationYear)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EducationId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EducationId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EducationId })
+            </td>
+        </tr>
+    }
+</table>

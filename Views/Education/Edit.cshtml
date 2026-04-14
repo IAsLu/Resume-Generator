@@ -1,0 +1,50 @@
+﻿@model FINAL.Models.Education
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('https://img.pikbest.com/wp/202344/white-seamless-texture-soft-mink-cotton-wool-background_9929452.jpg!sw800');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
+<h2  style="margin-top:20px;">Edit Education</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.Hidden("resumeId", ViewData["ResumeId"])
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Degree)
+        @Html.EditorFor(model => model.Degree, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Institution)
+        @Html.EditorFor(model => model.Institution, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Institution, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GraduationYear)
+        @Html.EditorFor(model => model.GraduationYear, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.GraduationYear, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group" style="margin-top:10px;">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+            <input type="submit" value="Next" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+
+

@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        body {
+            padding-top: 56px; /* Adjust according to the height of the navbar */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .navbar-nav {
+            margin-left: auto; /* Ensure the nav items are pushed to the right */
+        }
+
+        .navbar-custom {
+            background-color: #412f2f;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #ddd; /* Light grey color for hover effect */
+            }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+            .navbar-brand img {
+                height: 40px; /* Adjust according to the size of the logo */
+                margin-right: 0px; /* Space between logo and text */
+            }
+
+        .footer {
+            background-color: #d8cdcd;
+            color: black;
+            text-align: center;
+            margin-top: auto; /* Push the footer to the bottom */
+            padding: 10px 0; /* Smaller padding for a smaller footer */
+        }
+
+            .footer a {
+                color: black;
+                font-size: 12px; /* Further reduced font size */
+            }
+
+                .footer a:hover {
+                    color: #eda1a1;
+                }
+
+        .social-icons {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+            .social-icons li {
+                display: inline;
+                margin: 0 5px; /* Spacing between icons */
+            }
+
+            .social-icons a {
+                color: black;
+                font-size: 16px; /* Further reduced font size */
+                text-decoration: none;
+            }
+
+                .social-icons a:hover {
+                    color: #ddd;
+                }
+    </style>
+    <!-- Font Awesome CDN for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom navbar-fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="~/Content/Images/RG_LOG-removebg-preview.png" alt="ResGen Logo" />
+                    <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:larger">ResGen</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Logout", "Logout")">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container-fluid pb-3 flex-grow-1">
+        @RenderBody()
+    </main>
+    <footer class="footer">
+        <div class="container">
+            &copy; @DateTime.Now.Year - My ASP.NET Application - <a style="text-decoration:none" href="@Url.Action("Privacy", "Home")">Privacy</a>
+            <div class="mt-1">
+                <ul class="social-icons">
+                    <li><a href="https://www.facebook.com" target="_blank" class="fab fa-facebook-f"></a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" class="fab fa-twitter"></a></li>
+                    <li><a href="https://www.linkedin.com" target="_blank" class="fab fa-linkedin-in"></a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" class="fab fa-instagram"></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model FINAL.Models.Template_2.Skills
+
+@{
+    ViewBag.Title = "Edit Skill";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('https://img.pikbest.com/wp/202344/white-seamless-texture-soft-mink-cotton-wool-background_9929452.jpg!sw800');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    h2 {
+        margin-bottom: 30px; /* Add spacing below the heading */
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* Add spacing between form fields */
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 5px; /* Slightly rounded corners */
+    }
+
+    .form-actions {
+        margin-top: 20px;
+    }
+
+  
+</style>
+
+<h2 style="margin-top:7px;">Edit Skill</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SkillName)
+        @Html.TextBoxFor(model => model.SkillName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SkillName)
+    </div>
+
+    @Html.HiddenFor(model => model.SkillId)
+    @Html.HiddenFor(model => model.ResumeId)
+
+    <div class="form-actions">
+        <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+        <button type="submit" class="btn btn-primary">Next</button>
+    </div>
+}

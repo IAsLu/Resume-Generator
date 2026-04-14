@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "About Us";
+}
+
+<div class="now">
+    <h1 class="text-center">About ResGen</h1>
+    <p class="lead text-center">
+        ResGen is a cutting-edge online resume generation tool designed to simplify the process of creating professional and visually appealing resumes. Our mission is to help job seekers stand out in the competitive job market by providing an intuitive and user-friendly platform for resume creation.
+    </p>
+
+    <section>
+        <h2>Our Story</h2>
+        <p>
+            Founded with the goal of making resume creation accessible to everyone, ResGen combines modern design principles with ease of use to ensure that you can create a standout resume in just minutes. Our team consists of experienced professionals who understand the nuances of effective resume design and the importance of a compelling presentation.
+        </p>
+    </section>
+
+    <section class="mt-4">
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Easy-to-Use Interface:</strong> Our user-friendly interface allows you to create a professional resume quickly and efficiently.</li>
+            <li><strong>Customizable Templates:</strong> Choose from a variety of professionally designed templates that can be customized to suit your needs.</li>
+            <li><strong>Real-Time Preview:</strong> See how your resume looks as you make changes with our real-time preview feature.</li>
+            <li><strong>Download and Share:</strong> Download your resume in multiple formats or share it directly from the platform.</li>
+            <li><strong>Guided Assistance:</strong> Get tips and suggestions to enhance your resume and make it more effective.</li>
+        </ul>
+    </section>
+
+    <section class="mt-4">
+        <h2>Our Team</h2>
+        <p>
+            The ResGen team is dedicated to providing a top-notch resume generation experience. Our team of developers, designers, and career experts work together to bring you the best tools for resume creation. We are passionate about helping you achieve your career goals and are always looking for ways to improve our platform.
+        </p>
+    </section>
+
+    <section class="mt-4">
+        <h2>Contact Us</h2>
+        <p>
+            Have questions or need assistance? Feel free to reach out to us through our <a href="@Url.Action("Contact", "Home")">Contact Us</a> page. We're here to help!
+        </p>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+}
+
+<style>
+    body {
+        background-image: url("https://cdn-blog.novoresume.com/articles/one-page-resume/bg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+    .now {
+        width: 75%;
+        margin-left: 180px;
+        margin-top: 40px;
+        background-color: rgba(255, 255, 255, 0.8); /* White background with some transparency for readability */
+        padding: 50px;
+        border-radius: 10px;
+    }
+
+    h1, h2, p {
+        color: #333;
+    }
+</style>

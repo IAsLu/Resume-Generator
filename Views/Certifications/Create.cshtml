@@ -1,0 +1,45 @@
+﻿@model FINAL.Models.Template_2.Certifications
+
+@{
+    ViewBag.Title = "Create Certification";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('https://img.pikbest.com/wp/202344/white-seamless-texture-soft-mink-cotton-wool-background_9929452.jpg!sw800');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
+<h2 style="margin-top:10px;">Certification</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ResumeId, new { Value = ViewBag.ResumeId })
+    <div class="form-group">
+        @Html.LabelFor(model => model.CertificationName)
+        @Html.TextBoxFor(model => model.CertificationName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IssuingOrganization)
+        @Html.TextBoxFor(model => model.IssuingOrganization, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Years)
+        @Html.TextBoxFor(model => model.Years, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group"  style="margin-top:20px">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+            <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+}

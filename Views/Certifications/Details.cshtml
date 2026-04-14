@@ -1,0 +1,19 @@
+﻿@model FINAL.Models.Template_2.Certifications
+
+@{
+    ViewBag.Title = "Certification Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Certification Details</h2>
+
+<div>
+    <h4>Certification Name: @Model.CertificationName</h4>
+    <h4>Issuing Organization: @Model.IssuingOrganization</h4>
+    <h4>Year: @Model.Year</h4>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CertificationId }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</p>

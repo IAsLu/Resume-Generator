@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FINAL.Models.Template_2.Resumes>
+
+@{
+    ViewBag.Title = "Resumes";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url("https://wallpapercrafter.com/desktop1/615580-blank-notebook-pencil-pen-desk-wood-write-book.jpg");
+        background-size: cover; /* Cover the entire background */
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Prevent image from repeating */
+    }
+
+    .details-container {
+        background-color: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+        padding: 20px;
+        border-radius: 10px; /* Rounded corners */
+        margin-top: 20px; /* Margin to separate from the top */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for better separation */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f4f4f4;
+    }
+</style>
+
+<div class="details-container">
+    <h2>Resumes</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Professional Summary</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Address</td>
+                    <td>@item.ProfessionalSummary</td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.ResumeId }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ResumeId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ResumeId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

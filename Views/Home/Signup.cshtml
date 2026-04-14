@@ -1,0 +1,254 @@
+﻿@model FINAL.Models.UserRegistration
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    body {
+        background: url("https://wallpaper-house.com/data/out/9/wallpaper2you_299200.jpg");
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-custom {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        display: block;
+        margin: 0 auto;
+    }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+    .form-container h2, .form-container h4 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            text-align: right;
+            margin-bottom: 0;
+        }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .form-check-label {
+        margin-right: 10px;
+    }
+</style>
+
+<body>
+    <div class="form-container">
+        <h2>Create</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>UserRegistration</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="form-check">
+                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @class = "form-check-input" })
+                            <label class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButtonFor(model => model.Gender, "Female", new { @class = "form-check-input" })
+                            <label class="form-check-label">Female</label>
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButtonFor(model => model.Gender, "Prefer Not to Say", new { @class = "form-check-input" })
+                            <label class="form-check-label">Prefer Not to Say</label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.State, Model.States, "Select State", new { @class = "form-control", id = "stateDropdown" })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.City, Model.Cities, "Select City", new { @class = "form-control", id = "cityDropdown" })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Create" class="btn-custom" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div style="text-align:center; margin-top: 20px;">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Define the cities for each state
+            var stateCities = {
+                "1": [ // Tamil Nadu
+                    { value: "1", text: "Coimbatore" },
+                    { value: "2", text: "Chennai" },
+                    { value: "3", text: "Madurai" }
+                ],
+                "2": [ // Kerala
+                    { value: "4", text: "Palakkad" },
+                    { value: "5", text: "Kochi" },
+                    { value: "6", text: "Thiruvananthapuram" }
+                ],
+                "3": [ // Karnataka
+                    { value: "7", text: "Bengaluru" },
+                    { value: "8", text: "Mysuru" },
+                    { value: "9", text: "Hubli" }
+                ],
+                "4": [ // Maharashtra
+                    { value: "10", text: "Mumbai" },
+                    { value: "11", text: "Pune" },
+                    { value: "12", text: "Nagpur" }
+                ],
+                "5": [ // Goa
+                    { value: "13", text: "Panaji" },
+                    { value: "14", text: "Margao" },
+                    { value: "15", text: "Vasco da Gama" }
+                ]
+            };
+
+            var $stateDropdown = $('#stateDropdown');
+            var $cityDropdown = $('#cityDropdown');
+
+            $stateDropdown.on('change', function () {
+                var selectedState = $(this).val();
+                var cities = stateCities[selectedState] || [];
+
+                $cityDropdown.empty().append('<option value="">Select City</option>'); // Clear existing options
+
+                $.each(cities, function (index, city) {
+                    $cityDropdown.append($('<option>', {
+                        value: city.value,
+                        text: city.text
+                    }));
+                });
+            });
+
+            // Initialize the city dropdown based on the current state
+            var initialState = $stateDropdown.val();
+            if (initialState) {
+                $stateDropdown.trigger('change');
+            }
+        });
+    </script>
+}

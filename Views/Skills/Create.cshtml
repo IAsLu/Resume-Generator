@@ -1,0 +1,38 @@
+﻿@model FINAL.Models.Template_2.Skills
+
+@{
+    ViewBag.Title = "Create Skill";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('https://img.pikbest.com/wp/202344/white-seamless-texture-soft-mink-cotton-wool-background_9929452.jpg!sw800');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
+<h2  style="margin-top:10px;">Skill</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SkillName)
+        @Html.TextBoxFor(model => model.SkillName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SkillName)
+    </div>
+
+    @Html.HiddenFor(model => model.ResumeId, new { Value = ViewBag.ResumeId })
+
+<div class="form-group" style="margin-top:20px">
+    <div class="col-md-offset-2 col-md-10">
+        <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+        <button type="submit" class="btn btn-primary">Next</button>
+    </div>
+</div>
+}

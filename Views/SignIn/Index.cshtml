@@ -1,0 +1,132 @@
+﻿@model FINAL.Models.UserRegistration
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="example">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">Sign in</h2>
+                        <br />
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signInForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "email" })
+                                <div id="emailError" class="text-danger"></div> <!-- Container for email error message -->
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "password" })
+                                <div id="passwordError" class="text-danger"></div> <!-- Container for password error message -->
+                            </div>
+                            <br />
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                            </div>
+                        }
+                        <div class="text-center mt-3">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="#">Create new account</a>
+                        </div>
+                        <p class="text-center mt-3">@ViewBag.Message</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .example {
+        margin-top: 90px;
+    }
+
+    body {
+        background-image: url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card-body {
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+    }
+
+    .form-group {
+        margin-left: 20%; /* Adjust this value to move the fields slightly right */
+        margin-right: 10%; /* Ensure the form fields stay centered */
+    }
+
+    .form-control {
+        text-align: left;
+    }
+
+    .text-center a {
+        color: #555; /* Set the color to light black (gray) */
+        text-decoration: none;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+
+        .text-center a:hover {
+            color: #0056b3; /* Change hover color */
+            text-decoration: none;
+            border-bottom: 2px solid #0056b3;
+        }
+
+    .text-center .mt-3 {
+        margin-top: 1rem; /* Slightly increase the margin for spacing */
+    }
+
+    .text-danger {
+        font-size: 0.875rem; /* Slightly smaller text for error messages */
+        margin-top: 0.25rem; /* Add a bit of space above the error message */
+    }
+</style>
+
+<script>
+    document.getElementById('signInForm').addEventListener('submit', function(event) {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var emailPattern =  /^[^\s]+[^\s]+\.[^\s]+$/;
+        var passwordPattern = /.{5,}/; // Password should be at least 6 characters
+
+        var emailError = document.getElementById('emailError');
+        var passwordError = document.getElementById('passwordError');
+        var isValid = true;
+
+        emailError.textContent = ''; // Clear previous error message
+        passwordError.textContent = ''; // Clear previous error message
+
+        if (!emailPattern.test(email)) {
+            emailError.textContent = 'Please enter a valid email address.';
+            isValid = false; // Mark as invalid
+        }
+
+        if (!passwordPattern.test(password)) {
+            passwordError.textContent = 'Password must be at least 5 characters long.';
+            isValid = false; // Mark as invalid
+        }
+
+        if (!isValid) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
+    });
+</script>

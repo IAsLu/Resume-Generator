@@ -1,0 +1,83 @@
+﻿@model FINAL.Models.Template_2.Resumes
+
+@{
+    ViewBag.Title = "Create Resume";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('https://img.pikbest.com/wp/202344/white-seamless-texture-soft-mink-cotton-wool-background_9929452.jpg!sw800');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* Add space between form groups */
+    }
+
+        .form-group label {
+            margin-bottom: 5px; /* Add space below labels */
+            display: block; /* Ensure label appears on its own line */
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%; /* Ensure inputs and textareas take full width of the container */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        .form-group textarea {
+            height: 100px; /* Set a default height for textareas */
+        }
+
+    .form-actions {
+        margin-top: 20px; /* Add space above the buttons */
+    }
+</style>
+
+<h2 style="margin-top:10px;">Create Resume</h2>
+
+@using (Html.BeginForm("Create", "Resumes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone)
+        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address)
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProfessionalSummary)
+        @Html.TextAreaFor(model => model.ProfessionalSummary, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProfessionalSummary)
+    </div>
+
+    <div class="form-actions">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+            <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+}

@@ -1,0 +1,22 @@
+﻿@model FINAL.Models.Template_2.Resumes
+
+@{
+    ViewBag.Title = "Resume Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+}
+
+<h2>Resume Details</h2>
+
+<div>
+    <h4>@Model.Name</h4>
+    <p>Email: @Model.Email</p>
+    <p>Phone: @Model.Phone</p>
+    <p>Address: @Model.Address</p>
+    <p>Professional Summary: @Model.ProfessionalSummary</p>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResumeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,6 +1,6 @@
 # 💼 Resume Generator (ASP.NET MVC)
 
-A web-based Resume Generator application built using ASP.NET MVC and SQL Server. This application allows users to create, preview, and download professional resumes بسهولة and quickly.
+A web-based Resume Generator application built using ASP.NET MVC and SQL Server. This application allows users to create, preview, and download professional resumes quickly.
 
 ---
 

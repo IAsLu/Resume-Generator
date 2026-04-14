@@ -56,11 +56,11 @@ Use the below credentials to access the application:
 ### 🏠 Home Page
 ![Home](Resume_Generator_Screenshots/Home.png)
 
-### Signin
-(Resume_Generator_Screenshots/SignIn.png)
+### 📄 Signin
+![Form](Resume_Generator_Screenshots/SignIn.png)
 
-### Templates
-(Resume_Generator_Screenshots/Templates.png)
+### 📄 Templates
+![Form](Resume_Generator_Screenshots/Templates.png)
 
 ### 📝 Details Filling
 ![Form](Resume_Generator_Screenshots/Details_Filling.png)
